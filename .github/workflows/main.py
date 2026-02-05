@@ -21,9 +21,9 @@ class ExpenseList:
     def remove_expense(self, expense):
         self.expenses.remove(expense)
     def view_expenses(self):
-        print("Date    Description    Amount")
-        for expense in self.expenses:
-            print(expense)
+        print("ID      Date    Description    Amount")
+        for i in range(len(self.expenses)):
+            print(f'ID: {i} {self.expenses[i]}')
 
 
 if __name__ == "__main__":
