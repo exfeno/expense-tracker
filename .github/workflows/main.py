@@ -1,11 +1,12 @@
 class Expense:
-    def __init__(self, description, amt, date):
+    def __init__(self, description, amt, date, id=0):
         self.description = description
         self.amt = amt
         self.date = date
+        self.id = id
     
     def __str__(self):
-        return f"{self.date}    {self.description}    {self.amt}"
+        return f"{self.id}{self.date}    {self.description}    {self.amt}"
     def update_amt(self, new_amt):
         self.amt = new_amt
     def update_description(self, new_description):
@@ -16,14 +17,18 @@ class ExpenseList:
     def __init__(self):
         self.expenses = []
     
+    def assign_IDs(self):
+        for i in range(len(self.expenses)):
+            self.expenses[i].ID = i
     def add_expense(self, expense):
         self.expenses.append(expense)
+        self.expenses.assign_IDs()
     def remove_expense(self, expense):
         self.expenses.remove(expense)
+        self.expenses.assign_IDs()
     def view_expenses(self):
-        print("ID      Date    Description    Amount")
-        for i in range(len(self.expenses)):
-            print(f'ID: {i} {self.expenses[i]}')
+        for expense in self.expenses:
+            print(expense)
 
 
 if __name__ == "__main__":
