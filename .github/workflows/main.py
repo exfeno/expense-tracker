@@ -6,7 +6,7 @@ class Expense:
         self.id = id
     
     def __str__(self):
-        return f"{self.id}{self.date}    {self.description}    {self.amt}"
+        return f"{self.id} {self.date}    {self.description}    {self.amt}"
     def update_amt(self, new_amt):
         self.amt = new_amt
     def update_description(self, new_description):
@@ -16,16 +16,12 @@ class Expense:
 class ExpenseList:
     def __init__(self):
         self.expenses = []
-    
-    def assign_IDs(self):
-        for i in range(len(self.expenses)):
-            self.expenses[i].ID = i
     def add_expense(self, expense):
+        expense.id = len(self.expenses)
         self.expenses.append(expense)
-        self.expenses.assign_IDs()
     def remove_expense(self, expense):
         self.expenses.remove(expense)
-        self.expenses.assign_IDs()
+        self.expenses[(len(self.expenses) - 1)].id = (expense.id)-1
     def view_expenses(self):
         for expense in self.expenses:
             print(expense)
